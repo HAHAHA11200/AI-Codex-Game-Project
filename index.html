@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moon Lantern</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="kicker">Interactive Tale</p>
+          <h1>Moon Lantern</h1>
+          <p class="lede">
+            A story-forward RPG about relic hunting, leveling up, and dragging a dead moon-flame through monsters before the valley loses the dawn.
+          </p>
+        </div>
+        <button id="restartButton" class="secondary-button">New Run</button>
+      </header>
+
+      <main class="game-grid">
+        <section class="story-card">
+          <div class="story-top">
+            <div>
+              <p id="chapterLabel" class="eyebrow"></p>
+              <h2 id="sceneTitle"></h2>
+              <p id="objectiveText" class="objective"></p>
+            </div>
+            <div id="modeChip" class="mode-chip"></div>
+          </div>
+
+          <div id="storyText" class="story-text"></div>
+          <div id="interactionPanel" class="interaction-panel hidden"></div>
+          <div id="encounterSummary" class="encounter-summary hidden"></div>
+          <div id="choiceContainer" class="choice-list"></div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="visual-card">
+            <div class="card-header">
+              <p class="eyebrow">Vision</p>
+              <p id="visualCaption" class="visual-caption"></p>
+            </div>
+            <div id="visualPanel" class="visual-panel" aria-hidden="true"></div>
+          </section>
+
+          <section class="stats-card">
+            <div class="card-header">
+              <p class="eyebrow">Lantern Bearer</p>
+              <p id="statusLine" class="status-line"></p>
+            </div>
+
+            <div class="health-block">
+              <div class="meter-meta">
+                <span>Health</span>
+                <span id="healthText"></span>
+              </div>
+              <div class="meter">
+                <span id="healthFill"></span>
+              </div>
+            </div>
+
+            <div class="health-block">
+              <div class="meter-meta">
+                <span>Experience</span>
+                <span id="xpText"></span>
+              </div>
+              <div class="meter xp-meter">
+                <span id="xpFill"></span>
+              </div>
+            </div>
+
+            <div class="stat-grid">
+              <div class="stat-tile">
+                <span>Level</span>
+                <strong id="levelStat"></strong>
+              </div>
+              <div class="stat-tile">
+                <span>Resolve</span>
+                <strong id="resolveStat"></strong>
+              </div>
+              <div class="stat-tile">
+                <span>Power</span>
+                <strong id="attackStat"></strong>
+              </div>
+              <div class="stat-tile">
+                <span>Guard</span>
+                <strong id="defenseStat"></strong>
+              </div>
+              <div class="stat-tile">
+                <span>Silver</span>
+                <strong id="goldStat"></strong>
+              </div>
+              <div class="stat-tile">
+                <span>Tonics</span>
+                <strong id="potionStat"></strong>
+              </div>
+            </div>
+
+            <div class="gear-grid">
+              <div>
+                <span>Weapon</span>
+                <strong id="weaponText"></strong>
+              </div>
+              <div>
+                <span>Armor Set</span>
+                <strong id="armorText"></strong>
+              </div>
+              <div>
+                <span>Origin</span>
+                <strong id="originText"></strong>
+              </div>
+            </div>
+
+            <button id="armorMenuButton" class="secondary-button armor-menu-button" type="button">
+              Open Traveler Menu
+            </button>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <div id="armorMenu" class="menu-overlay hidden" aria-hidden="true">
+      <div class="menu-panel" role="dialog" aria-modal="true" aria-labelledby="armorMenuTitle">
+        <div class="card-header">
+          <div>
+            <p class="eyebrow">Traveler Menu</p>
+            <h2 id="armorMenuTitle" class="menu-title">Choose Your Kit</h2>
+          </div>
+          <button id="armorMenuClose" class="secondary-button menu-close" type="button">Close</button>
+        </div>
+
+        <p id="menuCopy" class="menu-copy">
+          Keep the main screen clear, then open this menu to manage armor, read your loot, and spend points in the
+          skill tree.
+        </p>
+
+        <div class="menu-tabs" id="menuTabs" role="tablist" aria-label="Traveler menu sections">
+          <button class="menu-tab active" type="button" data-tab="armor">Armor</button>
+          <button class="menu-tab" type="button" data-tab="abilities">Abilities</button>
+          <button class="menu-tab" type="button" data-tab="loot">Loot</button>
+          <button class="menu-tab" type="button" data-tab="tree">Skill Tree</button>
+          <button class="menu-tab" type="button" data-tab="journal">Journal</button>
+        </div>
+
+        <div id="armorMenuContent" class="armor-menu-content menu-section"></div>
+        <div id="abilityList" class="ability-list menu-section hidden"></div>
+        <div id="inventoryList" class="inventory-list menu-section hidden"></div>
+        <div id="skillTreeContent" class="skill-tree-content menu-section hidden"></div>
+        <ul id="logList" class="log-list menu-section hidden" aria-live="polite"></ul>
+      </div>
+    </div>
+
+    <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="false"></div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
